@@ -1,0 +1,440 @@
+/* =========================================
+   1. GLOBAL STYLES & VARIABLES
+   ========================================= */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap');
+
+:root {
+    /* --- PALETTE: FRESH MINT & DUSTY PINK --- */
+    
+    /* Primary Accent (Dusty Pink - dipertegas agar kontras dengan hijau) */
+    --color-primary: #cd5c85;       /* Pink lebih deep */
+    --color-primary-soft: #f7b7d4;  /* Pink pastel (User original) */
+    --color-primary-bg: #fff0f5;    /* Pink background sangat muda */
+
+    /* BACKGROUND DOMINAN HIJAU (Boosted Visibility) */
+    /* Menggunakan #b8f2c8 sebagai basis gradasi agar hijaunya keluar */
+    --bg-green-gradient: linear-gradient(120deg, #e0f7ea 0%, #b8f2c8 100%); 
+    
+    /* Secondary Colors */
+    --color-success: #2d8a55;      /* Hijau tua untuk text sukses */
+    --color-user-b: #48bb78;       /* Hijau segar untuk User B */
+    --color-user-c: #6fa0c4;       /* Biru kalem untuk User C */
+
+    /* Neutrals & Text */
+    --bg-card: rgba(255, 255, 255, 0.85); /* Putih transparan agar background hijau tembus dikit */
+    --text-main: #2c3e34;      /* Hijau tua gelap (hampir hitam) untuk teks utama */
+    --text-muted: #5e7568;     /* Abu-abu kehijauan */
+    --border-subtle: #bcdbc6;  /* Border hijau tipis */
+
+    /* Shadows (bernuansa hijau) */
+    --shadow-sm: 0 4px 15px rgba(46, 139, 87, 0.08);
+    --shadow-md: 0 10px 30px rgba(46, 139, 87, 0.12);
+    --shadow-hover: 0 15px 35px rgba(205, 92, 133, 0.2);
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    /* BACKGROUND UTAMA: Lebih hijau sekarang */
+    background: var(--bg-green-gradient);
+    background-attachment: fixed; 
+    color: var(--text-main);
+    line-height: 1.6;
+    overflow-x: hidden;
+    min-height: 100vh;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-weight: 700;
+    color: #1a2e22; /* Sangat gelap, slight green hue */
+    letter-spacing: -0.5px;
+}
+
+/* Animasi Masuk */
+.fade-in { animation: fadeInUp 0.6s cubic-bezier(0.16, 1, 0.3, 1); }
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* =========================================
+   2. NAVBAR (Glassy Mint)
+   ========================================= */
+.navbar {
+    /* Background semi-transparan dengan tint hijau muda */
+    background-color: rgba(240, 255, 245, 0.85) !important;
+    backdrop-filter: blur(15px);
+    border-bottom: 1px solid rgba(184, 242, 200, 0.6);
+    box-shadow: var(--shadow-sm) !important;
+    padding: 1rem 0;
+}
+
+.navbar-brand {
+    color: var(--text-main) !important;
+    font-weight: 700;
+    font-size: 1.3rem;
+}
+.navbar-brand i { color: var(--color-primary); }
+
+.nav-link {
+    color: var(--text-muted) !important;
+    font-weight: 500;
+    font-size: 0.95rem;
+    padding: 8px 20px !important;
+    border-radius: 50px;
+    transition: all 0.3s ease;
+    margin: 0 2px;
+}
+
+.nav-link:hover {
+    color: var(--color-primary) !important;
+    background-color: rgba(205, 92, 133, 0.1);
+}
+
+.nav-link.active {
+    color: #fff !important;
+    background-color: var(--color-primary);
+    box-shadow: 0 4px 12px rgba(205, 92, 133, 0.4);
+}
+
+/* =========================================
+   3. COMPONENTS & BUTTONS
+   ========================================= */
+
+/* Text Overrides */
+.text-primary { color: var(--color-primary) !important; }
+.text-success { color: var(--color-success) !important; }
+.text-muted { color: var(--text-muted) !important; }
+
+/* Buttons: Pink solid agar kontras dengan background Hijau */
+.btn-primary {
+    background-color: var(--color-primary) !important;
+    border: none !important;
+    border-radius: 12px;
+    padding: 12px 28px;
+    font-weight: 600;
+    box-shadow: 0 4px 15px rgba(205, 92, 133, 0.3);
+    transition: all 0.3s ease;
+}
+
+.btn-primary:hover {
+    background-color: #b0466e !important; /* Darker pink */
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(205, 92, 133, 0.5);
+}
+
+.btn-outline-primary {
+    color: var(--color-primary) !important;
+    border-color: var(--color-primary) !important;
+    background-color: transparent;
+}
+.btn-outline-primary:hover {
+    background-color: var(--color-primary) !important;
+    color: white !important;
+}
+
+/* Cards: Efek Kaca (Glassmorphism) agar hijaunya tembus */
+.card {
+    border: 1px solid rgba(255, 255, 255, 0.8);
+    border-radius: 20px;
+    background: var(--bg-card); /* Putih 85% opacity */
+    box-shadow: var(--shadow-sm);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    backdrop-filter: blur(5px);
+}
+
+.card-header {
+    background-color: rgba(255, 255, 255, 0.5) !important;
+    border-bottom: 1px solid var(--border-subtle);
+    padding: 1.5rem;
+}
+.card-header h3, .card-header h4 {
+    font-size: 1.2rem;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+.card-header i {
+    color: var(--color-primary);
+    background: #ffeef5; /* Light pink bg for icon */
+    padding: 8px;
+    border-radius: 10px;
+}
+
+.card-body { padding: 1.5rem; }
+
+/* Inputs */
+.form-control, .form-select {
+    border: 1px solid var(--border-subtle);
+    border-radius: 10px;
+    padding: 12px;
+    background-color: rgba(255, 255, 255, 0.9);
+}
+.form-control:focus, .form-select:focus {
+    background-color: #fff;
+    border-color: var(--color-primary);
+    box-shadow: 0 0 0 4px rgba(205, 92, 133, 0.15);
+}
+
+/* =========================================
+   4. HASH & BLOCKCHAIN DISPLAY
+   ========================================= */
+
+/* Output Box */
+.output-box, textarea[readonly], input[readonly] {
+    background-color: rgba(232, 248, 240, 0.7) !important; /* Hijau mint sangat muda */
+    color: #3d5a4b;
+    border: 1px solid #ccebd6;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.85rem;
+}
+
+#hash-output {
+    color: var(--color-primary);
+    font-weight: 600;
+}
+
+/* Scrollable Chain Area */
+.chain-wrapper {
+    display: flex;
+    overflow-x: auto;
+    padding: 30px 15px;
+    gap: 25px;
+    /* Container agak gelap dikit biar block putihnya pop-up */
+    background: rgba(46, 139, 87, 0.05); 
+    border-radius: 20px;
+    border: 1px solid var(--border-subtle);
+    
+    scrollbar-width: thin;
+    scrollbar-color: var(--color-primary-soft) transparent;
+}
+.chain-wrapper::-webkit-scrollbar { height: 8px; }
+.chain-wrapper::-webkit-scrollbar-thumb {
+    background-color: var(--color-primary-soft);
+    border-radius: 10px;
+}
+
+/* Block Item */
+.blockchain-block {
+    min-width: 340px;
+    background-color: #ffffff;
+    border: 1px solid var(--border-subtle);
+    border-radius: 18px;
+    padding: 25px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+/* Garis Konektor */
+.blockchain-block:not(:last-child)::after {
+    content: '';
+    position: absolute;
+    right: -25px;
+    top: 50%;
+    width: 25px;
+    height: 6px;
+    background-color: #b8f2c8; /* Hijau jelas */
+    z-index: -1;
+}
+
+.blockchain-block:hover {
+    transform: translateY(-8px);
+    border-color: var(--color-primary);
+    box-shadow: 0 15px 30px rgba(46, 139, 87, 0.15);
+}
+.blockchain-block h3 {
+    border-bottom: 2px solid #e8f5e9;
+    padding-bottom: 10px;
+    margin-bottom: 15px;
+    color: var(--text-main);
+}
+.blockchain-block label {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    font-weight: 700;
+    margin-top: 15px;
+    display: block;
+}
+
+/* =========================================
+   5. CONSENSUS & WALLETS
+   ========================================= */
+
+.wallet-card { border: none !important; backdrop-filter: none; background: #fff; }
+
+/* User A (Pink Accent) */
+.wallet-card:nth-child(1) .card-header {
+    background-color: #fff0f5 !important;
+    color: var(--color-primary) !important;
+    border-bottom: 2px solid var(--color-primary-soft);
+}
+/* User B (Green Accent - Matching Theme) */
+.wallet-card:nth-child(2) .card-header {
+    background-color: #e6fffa !important;
+    color: #276749 !important;
+    border-bottom: 2px solid #48bb78;
+}
+.wallet-card:nth-child(2) .btn-primary {
+    background-color: #48bb78 !important;
+    box-shadow: 0 4px 15px rgba(72, 187, 120, 0.3);
+}
+/* User C (Blue Accent) */
+.wallet-card:nth-child(3) .card-header {
+    background-color: #ebf8ff !important;
+    color: #2c5282 !important;
+    border-bottom: 2px solid #90cdf4;
+}
+.wallet-card:nth-child(3) .btn-primary {
+    background-color: var(--color-user-c) !important;
+    box-shadow: 0 4px 15px rgba(111, 160, 196, 0.3);
+}
+
+/* Chain Rows (Ledger) */
+.chain-row-scroll {
+    background: rgba(255,255,255,0.7);
+    border: 1px solid var(--border-subtle);
+    border-radius: 12px;
+    padding: 20px;
+}
+.chain-block {
+    min-width: 220px;
+    background: #fff;
+    border: 1px solid #e2e8f0;
+    border-left: 5px solid var(--color-primary-soft);
+    border-radius: 8px;
+    padding: 15px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.03);
+    font-size: 0.8rem;
+}
+.chain-block.invalid {
+    background-color: #fff5f5;
+    border-left-color: #fc8181;
+}
+
+/* =========================================
+   6. PROFILE
+   ========================================= */
+.border-primary { border-color: var(--color-primary-soft) !important; }
+
+.badge.bg-primary {
+    background-color: #fff0f5 !important;
+    color: var(--color-primary) !important;
+    border: 1px solid var(--color-primary-soft);
+    box-shadow: none;
+}
+
+/* Footer */
+footer {
+    border-top: 1px solid rgba(46, 139, 87, 0.1);
+    margin-top: 60px;
+    padding: 30px 0;
+    color: var(--text-muted);
+}
+/* =========================================
+   FIX ANTI-GHAIB (FORCE VISIBILITY)
+   ========================================= */
+
+/* 1. Reset semua section biar hidden dulu */
+.page-section {
+    display: none;
+    opacity: 0;
+    transition: opacity 0.3s ease-in;
+}
+
+/* 2. PAKSA MUNCUL jika ada class 'active' */
+.page-section.active {
+    display: block !important;
+    opacity: 1 !important;
+    animation: none !important; /* Matikan animasi sementara biar nongol dulu */
+}
+
+/* 3. Jaga-jaga kalau Bootstrap error, kita define d-none manual */
+.d-none {
+    display: none !important;
+}
+
+/* 4. Pastikan warna teks kontras dengan background */
+body, h1, h2, h3, h4, p, label, div {
+    color: var(--text-main); 
+}
+
+/* 5. Paksa input form kelihatan backgroundnya */
+.form-control, .form-select {
+    background-color: #ffffff !important;
+    opacity: 1 !important;
+}
+
+/* =========================================
+   1. LAYOUT UTAMA (FIX ANTI-NGAWANG)
+   ========================================= */
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    display: flex;          /* Mode Flexbox */
+    flex-direction: column; /* Susun Atas-Bawah */
+    min-height: 100vh;      /* Minimal setinggi layar */
+}
+
+/* KUNCI RAHASIA: Memaksa konten tengah memelar memenuhi ruang kosong */
+/* Ini akan mendorong footer mentok ke bawah */
+.container.my-5 {
+    flex: 1 0 auto; 
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+/* =========================================
+   2. FOOTER STYLES (COMPACT & SOLID)
+   ========================================= */
+.footer-section {
+    flex-shrink: 0;      /* Jangan menyusut */
+    margin-top: auto;    /* Dorong ke paling bawah */
+    width: 100%;
+    
+    /* Tampilan Solid Putih & Garis Batas */
+    background: #ffffff; 
+    border-top: 1px solid rgba(46, 139, 87, 0.3);
+    
+    font-size: 0.85rem;
+    z-index: 100;
+}
+
+/* Link Styling */
+.footer-link {
+    transition: all 0.2s ease;
+}
+
+.footer-link:hover .hover-text {
+    color: var(--color-primary) !important;
+}
+
+/* Kotak Icon Kecil (Compact) */
+.icon-box-sm {
+    width: 28px;
+    height: 28px;
+    background: white;
+    border: 1px solid #eee; /* Tambahan border tipis biar rapi di background putih */
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    transition: all 0.3s ease;
+}
+
+/* Efek Hover */
+.footer-link:hover .icon-box-sm {
+    background: var(--color-primary);
+    border-color: var(--color-primary);
+    color: white;
+    transform: rotate(15deg) scale(1.1);
+}
